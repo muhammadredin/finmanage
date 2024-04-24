@@ -6,6 +6,5 @@ tools
 pandas
 numpy
 plotly
-time
 pickle
 joblib
