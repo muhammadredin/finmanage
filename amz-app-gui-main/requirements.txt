@@ -3,9 +3,9 @@ streamlit_authenticator
 st-pages
 datetime
 tools
-remove_footer
 pandas
 numpy
 plotly.graph_objects
 time
 pickle
+joblib
