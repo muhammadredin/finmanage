@@ -7,7 +7,7 @@ def run():
     conn = finance_db.connect_db()
     
     st.title("Your spends this month")
-    sql = "SELECT * FROM outcomes"
+    sql = "SELECT * FROM spending"
     record = finance_db.read_record(conn, sql)
     
     df = pd.DataFrame(record, columns=["id", "Date", "Outcome", "Category", "Note"])
