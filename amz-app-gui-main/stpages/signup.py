@@ -7,8 +7,6 @@ import finance_db
 def run():
 	st.title("Sign Up")
 	st.markdown("Sign up to unleash the potential of your money and embark on a journey towards financial empowerment.")
- 
-	conn = finance_db.connect_db()
 
 	fullname = st.text_input("Full Name")
 	username = st.text_input("Username")
@@ -18,20 +16,18 @@ def run():
 	accept_terms = st.checkbox("I accept the terms and conditions")
 
 	col1, col2 = st.columns((6,2.5))
-	if col1.button("Sign Up", on_click=tools.change_page('personalization')):
+	col1.button("Submit", on_click=tools.change_page("personalization"))
+	col2.button("Already have an account?", on_click=tools.change_page('login'))
+	'''if col1.button("Sign Up"):
 		if password != verify_password:
 			st.error("Passwords do not match. Please try again.")
 		elif not accept_terms:
 			st.warning("Please accept the terms and conditions.")
-		else:      
-			verify = finance_db.check_value_exists(username)
-			if verify:
-				st.error("Username already exists. Please try again.")
-				
-			else:
-				sql = "insert into users(fullname, username, birthday, password) VALUES (%s, %s, %s, %s)"
-				data = (fullname, username, birthday, password)
-				finance_db.create_record(conn, sql, data)
-				st.success("Sign up successful!")
-				
-	col2.button("Login", on_click=tools.change_page('login'))
+		else:
+			#accounts = tools.Storage('accounts.json')
+			#if accounts.get(username) == None:
+				#st.success("Sign up successful!")
+				#accounts.set(username, {"username":username, "birthday":str(birthday), "password":password})
+			#tools.change_page('personalization')
+			#else:
+				#st.error("Username already exists. Please try again.")'''
