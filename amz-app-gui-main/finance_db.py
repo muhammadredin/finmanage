@@ -2,10 +2,10 @@ import mysql.connector
 
 def connect_db():
     conn = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="@Kelompok7",
-        database="finance_app"
+        host="finmanager-db-instance-1.c7604cswmotc.us-east-1.rds.amazonaws.com",
+        user="admin",
+        password="!Kelompok7",
+        database="finmanageapp"
     )
     return conn
 
@@ -23,10 +23,10 @@ def read_record(conn, sql):
 def check_value_exists(column_value):    
     
     conn = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="@Kelompok7",
-        database="finance_app"
+        host="finmanager-db-instance-1.c7604cswmotc.us-east-1.rds.amazonaws.com",
+        user="admin",
+        password="!Kelompok7",
+        database="finmanageapp"
     )
     
     # Create a cursor object
