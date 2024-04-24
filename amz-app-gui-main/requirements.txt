@@ -6,5 +6,5 @@ tools
 pandas
 numpy
 plotly
-pickle
+pickle5
 joblib
