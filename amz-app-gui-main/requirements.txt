@@ -1,6 +1,6 @@
 streamlit
 streamlit_authenticator
-stpages
+st-pages
 datetime
 tools
 remove_footer
