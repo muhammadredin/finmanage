@@ -1,5 +1,4 @@
 import streamlit as st
-import streamlit_authenticator as stauth
 import tools
 from datetime import date
 import finance_db
