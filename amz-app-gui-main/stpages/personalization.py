@@ -161,17 +161,17 @@ def run():
         if 'Item' in response and 'budgets' in response['Item']:
             # Update the 'budgets' dictionary with new attributes
             budgets = response['Item']['budgets']
-            budgets['foods'] = foods[0]
-            budgets['house'] = house[0]
-            budgets['bills'] = we[0]
-            budgets['entertainment'] = ent[0]
-            budgets['savings'] = sav[0]
-            budgets['insurance'] = ins[0]
-            budgets['transportation'] = trans[0]
-            budgets['education'] = edu[0]
-            budgets['emergency'] = emg[0]
-            budgets['invest'] = inv[0]
-            budgets['leftovers'] = leftovers
+            budgets['foods'] = float(foods[0])
+            budgets['house'] = float(house[0])
+            budgets['bills'] = float(we[0])
+            budgets['entertainment'] = float(ent[0])
+            budgets['savings'] = float(sav[0])
+            budgets['insurance'] = float(ins[0])
+            budgets['transportation'] = float(trans[0])
+            budgets['education'] = float(edu[0])
+            budgets['emergency'] = float(emg[0])
+            budgets['invest'] = float(inv[0])
+            budgets['leftovers'] = float(leftovers)
         
             # Update the item with the modified 'budgets' dictionary
             response['Item']['budgets'] = budgets
