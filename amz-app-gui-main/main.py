@@ -10,6 +10,9 @@ if __name__ == "__main__":
         st.session_state.page = 'dashboard'
     page = st.session_state.page
 
+    if 'user_data' not in st.session_state:
+        st.session_state.user_data = None
+
     if page == 'dashboard':
         dashboard.run()
     elif page == 'signup':
