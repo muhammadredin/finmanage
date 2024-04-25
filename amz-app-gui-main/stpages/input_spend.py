@@ -27,7 +27,7 @@ def run():
 
     
     if st.button("Submit", key="income"):
-        sql = "insert into incomes(username, income_date, income, category, note) VALUES (%s, %s, %s, %s, %s)"
+        sql = "insert into incomes(username, date_received, money_received, category, note) VALUES (%s, %s, %s, %s, %s)"
         data = (user_data['username'], date_income, income, income_category, income_note)
         finance_db.create_record(conn, sql, data)
         response = nosql_conn.get_item(Key={'username': user_data['username']})
