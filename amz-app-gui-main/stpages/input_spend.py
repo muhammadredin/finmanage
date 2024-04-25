@@ -59,6 +59,6 @@ def run():
         if 'Item' in response:
             item = response['Item']
             item['account_balance'] -= outcome
-            table.put_item(Item=item)
+            nosql_conn.put_item(Item=item)
         
         st.success("Record created successfully.")
