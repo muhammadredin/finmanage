@@ -8,6 +8,7 @@ import pickle
 from sklearn.preprocessing import LabelEncoder
 from sklearn.gaussian_process import GaussianProcessRegressor
 from sklearn.gaussian_process.kernels import RBF
+from decimal import Decimal
 import boto3
 
 def get_user_data():
@@ -161,17 +162,17 @@ def run():
         if 'Item' in response and 'budgets' in response['Item']:
             # Update the 'budgets' dictionary with new attributes
             budgets = response['Item']['budgets']
-            budgets['foods'] = float(foods[0])
-            budgets['house'] = float(house[0])
-            budgets['bills'] = float(we[0])
-            budgets['entertainment'] = float(ent[0])
-            budgets['savings'] = float(sav[0])
-            budgets['insurance'] = float(ins[0])
-            budgets['transportation'] = float(trans[0])
-            budgets['education'] = float(edu[0])
-            budgets['emergency'] = float(emg[0])
-            budgets['invest'] = float(inv[0])
-            budgets['leftovers'] = float(leftovers)
+            budgets['foods'] = Decimal(foods[0])
+            budgets['house'] = Decimal(house[0])
+            budgets['bills'] = Decimal(we[0])
+            budgets['entertainment'] = Decimal(ent[0])
+            budgets['savings'] = Decimal(sav[0])
+            budgets['insurance'] = Decimal(ins[0])
+            budgets['transportation'] = Decimal(trans[0])
+            budgets['education'] = Decimal(edu[0])
+            budgets['emergency'] = Decimal(emg[0])
+            budgets['invest'] = Decimal(inv[0])
+            budgets['leftovers'] = Decimal(leftovers)
         
             # Update the item with the modified 'budgets' dictionary
             response['Item']['budgets'] = budgets
