@@ -12,13 +12,15 @@ def run():
         st.button("Sign Up", on_click=tools.change_page('signup'))
     else:
         conn = finance_db.connect_db()
+
+        user_data = get_user_data()
         
         st.title("Your spends this month")
-        sql = "SELECT * FROM spending"
+        sql = f"SELECT * FROM spending WHERE username={user_data['username']}"
         record = finance_db.read_record(conn, sql)
         
-        df = pd.DataFrame(record, columns=["id", "Date", "Outcome", "Category", "Note"])
-        df = df.drop(columns=["id"])
+        df = pd.DataFrame(record, columns=["username", "Date", "Outcome", "Category", "Note"])
+        df = df.drop(columns=["username"])
 
         # Display data in DataFrame format
         st.dataframe(df)
