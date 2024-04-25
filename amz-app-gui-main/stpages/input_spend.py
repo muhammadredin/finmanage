@@ -54,7 +54,8 @@ def run():
         sql = "insert into spending(username, date_spend, money_spend, category, note) VALUES (%s, %s, %s, %s, %s)"
         data = (user_data['username'], date_spend, outcome, outcome_category, spend_note)
         finance_db.create_record(conn, sql, data)
-
+        response = nosql_conn.get_item(Key={'username': user_data['username']})
+        
         if 'Item' in response:
             item = response['Item']
             item['account_balance'] -= outcome
