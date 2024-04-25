@@ -8,6 +8,7 @@ import pickle
 from sklearn.preprocessing import LabelEncoder
 from sklearn.gaussian_process import GaussianProcessRegressor
 from sklearn.gaussian_process.kernels import RBF
+import boto3
 
 def format_currency(value):
     # Add a '.' as a thousands separator and prepend with 'Rp '
@@ -140,7 +141,14 @@ def run():
         # Display the table using Streamlit
         #data_table = data_table.reset_index(drop=True)
         st.dataframe(data_table, hide_index=True)
+        
+        dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
 
+        # Define table name
+        table_name = 'finapp_users'
+    
+        # Get reference to the DynamoDB table
+        table = dynamodb.Table(table_name)
         # Fetch the item from the database
         response = table.get_item(Key={'username': username})
         
