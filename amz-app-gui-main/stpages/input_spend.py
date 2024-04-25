@@ -26,7 +26,7 @@ def run():
     
     if st.button("Submit", key="income"):
         sql = "insert into incomes(username, income_date, income, category, note) VALUES (%s, %s, %s, %s, %s)"
-        data = (user_data['username'], date_income, income, income_category, income_note)
+        data = (user_data['username'], date_received, money_received, category, note)
         finance_db.create_record(conn, sql, data)
         st.success("Record created successfully.")
 
@@ -42,7 +42,7 @@ def run():
     spend_note = st.text_input("Note")
 
     if st.button("Submit"):
-        sql = "insert into spending(date_spend, money_spend, category, note) VALUES (%s, %s, %s, %s)"
-        data = (date_spend, outcome, outcome_category, spend_note)
+        sql = "insert into spending(username, date_spend, money_spend, category, note) VALUES (%s, %s, %s, %s)"
+        data = (user_data['username'], date_spend, outcome, outcome_category, spend_note)
         finance_db.create_record(conn, sql, data)
         st.success("Record created successfully.")
