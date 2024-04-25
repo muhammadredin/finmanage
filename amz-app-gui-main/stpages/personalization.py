@@ -10,6 +10,9 @@ from sklearn.gaussian_process import GaussianProcessRegressor
 from sklearn.gaussian_process.kernels import RBF
 import boto3
 
+def get_user_data():
+    return st.session_state.user_data
+
 def format_currency(value):
     # Add a '.' as a thousands separator and prepend with 'Rp '
     return f"Rp {value:,.0f}"
@@ -149,8 +152,10 @@ def run():
     
         # Get reference to the DynamoDB table
         table = dynamodb.Table(table_name)
+        user_data = get_user_data()
+        
         # Fetch the item from the database
-        response = table.get_item(Key={'username': username})
+        response = table.get_item(Key={'username': user_data['username']})
         
         # Check if the item exists and has the 'budgets' attribute
         if 'Item' in response and 'budgets' in response['Item']:
