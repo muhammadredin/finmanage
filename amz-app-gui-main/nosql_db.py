@@ -36,6 +36,7 @@ def add_users(table, username, fullname, birthdate, password, balance=0):
             'birthdate': birthdate.isoformat(),
             'password': password_hash,
             'account_balance': balance
+            'budgets': {}
         })
         
         st.success("Registration successful. You can now log in.")
