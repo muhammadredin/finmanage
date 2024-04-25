@@ -1,5 +1,4 @@
 import streamlit as st
-import streamlit_authenticator as stauth
 import tools
 import boto3
 from datetime import date
