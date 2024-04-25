@@ -8,7 +8,7 @@ from decimal import Decimal
 
 def connect_db():
     # Initialize DynamoDB client
-    dynamodb = boto3.resource('dynamodb')
+    dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
 
     # Define table name
     table_name = 'finapp_users'
