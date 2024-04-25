@@ -106,8 +106,7 @@ def run():
         emg = emg_model.predict(predict)
         inv = inv_model.predict(predict)
         partner = part_model.predict(predict)
-            
-        print(foods)
+        
         st.title("Expense Allocation")
         st.write("Here are your expense allocation for this month.")
         
