@@ -35,7 +35,7 @@ def add_users(table, username, fullname, birthdate, password, balance=0):
             'fullname': fullname,
             'birthdate': birthdate.isoformat(),
             'password': password_hash,
-            'account_balance': balance
+            'account_balance': balance,
             'budgets': {}
         })
         
