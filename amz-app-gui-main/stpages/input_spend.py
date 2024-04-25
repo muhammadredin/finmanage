@@ -34,7 +34,7 @@ def run():
 
         if 'Item' in response:
             item = response['Item']
-            item['account_balance'] += money_received
+            item['account_balance'] += income
             table.put_item(Item=item)
         
         st.success("Record created successfully.")
