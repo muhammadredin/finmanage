@@ -32,7 +32,7 @@ def run():
         finance_db.create_record(conn, sql, data)
         response = nosql_conn.get_item(Key={'username': user_data['username']})
 
-        if item in response:
+        if 'Item' in response:
             item = response['Item']
             item['account_balance'] += money_received
             table.put_item(Item=item)
@@ -55,7 +55,7 @@ def run():
         data = (user_data['username'], date_spend, outcome, outcome_category, spend_note)
         finance_db.create_record(conn, sql, data)
 
-        if item in response:
+        if 'Item' in response:
             item = response['Item']
             item['account_balance'] -= outcome
             table.put_item(Item=item)
