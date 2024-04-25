@@ -141,6 +141,33 @@ def run():
         #data_table = data_table.reset_index(drop=True)
         st.dataframe(data_table, hide_index=True)
 
+        # Fetch the item from the database
+        response = table.get_item(Key={'username': username})
+        
+        # Check if the item exists and has the 'budgets' attribute
+        if 'Item' in response and 'budgets' in response['Item']:
+            # Update the 'budgets' dictionary with new attributes
+            budgets = response['Item']['budgets']
+            budgets['foods'] = foods[0]
+            budgets['house'] = house[0]
+            budgets['bills'] = we[0]
+            budgets['entertainment'] = ent[0]
+            budgets['savings'] = sav[0]
+            budgets['insurance'] = ins[0]
+            budgets['transportation'] = trans[0]
+            budgets['education'] = edu[0]
+            budgets['emergency'] = emg[0]
+            budgets['invest'] = inv[0]
+            budgets['leftovers'] = leftovers
+        
+            # Update the item with the modified 'budgets' dictionary
+            response['Item']['budgets'] = budgets
+            table.put_item(Item=response['Item'])
+            print("Budgets updated successfully.")
+        else:
+            print("Item not found or 'budgets' attribute missing.")
+
+
         # Open a file in write mode ('w')
         # with open('output.txt', 'w') as f:
         #     f.write(f"This is the monthly income allocation u can preserve\n")
