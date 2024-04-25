@@ -16,7 +16,7 @@ def run():
         user_data = get_user_data()
         
         st.title("Your spends this month")
-        sql = f"SELECT * FROM spending WHERE username={user_data['username']}"
+        sql = f"SELECT * FROM spending WHERE username='{user_data['username']}'"
         record = finance_db.read_record(conn, sql)
         
         df = pd.DataFrame(record, columns=["username", "Date", "Outcome", "Category", "Note"])
