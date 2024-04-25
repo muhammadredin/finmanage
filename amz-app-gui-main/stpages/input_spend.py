@@ -42,7 +42,7 @@ def run():
     spend_note = st.text_input("Note")
 
     if st.button("Submit"):
-        sql = "insert into spending(username, date_spend, money_spend, category, note) VALUES (%s, %s, %s, %s)"
+        sql = "insert into spending(username, date_spend, money_spend, category, note) VALUES (%s, %s, %s, %s, %s)"
         data = (user_data['username'], date_spend, outcome, outcome_category, spend_note)
         finance_db.create_record(conn, sql, data)
         st.success("Record created successfully.")
