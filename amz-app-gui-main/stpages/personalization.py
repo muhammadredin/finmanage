@@ -177,9 +177,6 @@ def run():
             # Update the item with the modified 'budgets' dictionary
             response['Item']['budgets'] = budgets
             table.put_item(Item=response['Item'])
-            print("Budgets updated successfully.")
-        else:
-            print("Item not found or 'budgets' attribute missing.")
 
 
         # Open a file in write mode ('w')
