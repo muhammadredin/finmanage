@@ -179,58 +179,60 @@ def run():
                 # Update the item with the modified 'budgets' dictionary
                 response['Item']['budgets'] = budgets
                 table.put_item(Item=response['Item'])
-
-        with open('output.txt', 'w') as f:
-            f.write(f"This is the monthly income allocation u can preserve\n")
-            f.write(f"{foods[0]} for foods\n")
-            f.write(f"{house[0]} for house bill\n")
-            f.write(f"{we[0]} for water & electricity\n")
-            f.write(f"{ent[0]} for entertainment")
-            f.write(f"{sav[0]} for savings")
-            f.write(f"{ins[0]} for insurance")
-            f.write(f"{trans[0]} for transportation")
-            f.write(f"{edu[0]} for education")
-            f.write(f"{emg[0]} for emergency funds")
-            f.write(f"{inv[0]} for invest")
-            if leftovers > 0:
-                f.write(f"{leftovers} the surplus user have")
-            else:
-                f.write(f"You get lack of funds of {leftovers}")
-
-            rdb = finance_db.connect_db()
                 
-            f.write("")
+            with open('output.txt', 'w') as f:
+                f.write(f"This is the monthly income allocation u can preserve\n")
+                f.write(f"{foods[0]} for foods\n")
+                f.write(f"{house[0]} for house bill\n")
+                f.write(f"{we[0]} for water & electricity\n")
+                f.write(f"{ent[0]} for entertainment")
+                f.write(f"{sav[0]} for savings")
+                f.write(f"{ins[0]} for insurance")
+                f.write(f"{trans[0]} for transportation")
+                f.write(f"{edu[0]} for education")
+                f.write(f"{emg[0]} for emergency funds")
+                f.write(f"{inv[0]} for invest")
+                if leftovers > 0:
+                    f.write(f"{leftovers} the surplus user have\n")
+                else:
+                    f.write(f"You get lack of funds of {leftovers}\n")
+    
+                rdb = finance_db.connect_db()
+                    
+                f.write("\n")
+    
+                f.write("This is your monthly income and outcomes\n")
+                
+                f.write("\n")
+                f.write("monthly incomes")
+                conn = finance_db.connect_db()
+                sql = f"SELECT * FROM incomes WHERE username='{user_data['username']}'"
+                record = finance_db.read_record(conn, sql)            
+                for row in record:
+                    file.write(','.join(map(str, row)) + '\n')
+    
+                f.write("")
+                f.write("monthly outcomes")
+                sql = f"SELECT * FROM spending WHERE username='{user_data['username']}'"
+                record = finance_db.read_record(conn, sql)            
+                for row in record:
+                    file.write(','.join(map(str, row)) + '\n')
+    
+                f.write("\n")
+                f.write(f"This is the balance left on your account {user_data['account_balance']}\n")
+                f.write("\n")
+                f.write("This is your budgeting balance left for every category\n")
+                if 'Item' in response and 'budgets' in response['Item']:
+                    # Get the 'budgets' dictionary
+                    budgets = response['Item']['budgets']
+                    for category, amount in budgets.items():
+                        # Write the category and amount to the file
+                        file.write(f"{category}: {amount}\n")
+                    
+            st.write("Any question? Ask our chatbot!")
+            st.button("Lets Go!",on_click=tools.change_page('chatbot'))
 
-            f.write("This is your monthly income and outcomes")
-            
-            f.write("")
-            f.write("monthly incomes")
-            conn = finance_db.connect_db()
-            sql = f"SELECT * FROM incomes WHERE username='{user_data['username']}'"
-            record = finance_db.read_record(conn, sql)            
-            for row in record:
-                file.write(','.join(map(str, row)) + '\n')
-
-            f.write("")
-            f.write("monthly outcomes")
-            sql = f"SELECT * FROM spending WHERE username='{user_data['username']}'"
-            record = finance_db.read_record(conn, sql)            
-            for row in record:
-                file.write(','.join(map(str, row)) + '\n')
-
-            f.write("")
-            f.write(f"This is the balance left on your account {user_data['account_balance']}")
-            f.write("")
-            f.write("This is your budgeting balance left for every category")
-            if 'Item' in response and 'budgets' in response['Item']:
-                # Get the 'budgets' dictionary
-                budgets = response['Item']['budgets']
-                for category, amount in budgets.items():
-                    # Write the category and amount to the file
-                    file.write(f"{category}: {amount}\n")
-
-        st.write("Any question? Ask our chatbot!")
-        st.button("Lets Go!",on_click=tools.change_page('chatbot'))
+        
     # st.button("Submit",on_click=tools.change_page('expense_page'))
     st.button("Back",on_click=tools.change_page('dashboard'))
 
