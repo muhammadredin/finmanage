@@ -207,14 +207,14 @@ def run():
             sql = f"SELECT * FROM incomes WHERE username='{user_data['username']}'"
             record = finance_db.read_record(conn, sql)            
             for row in record:
-                file.write(','.join(map(str, row)) + '\n')
+                f.write(','.join(map(str, row)) + '\n')
 
             f.write("")
             f.write("monthly outcomes\n")
             sql = f"SELECT * FROM spending WHERE username='{user_data['username']}'"
             record = finance_db.read_record(conn, sql)            
             for row in record:
-                file.write(','.join(map(str, row)) + '\n')
+                f.write(','.join(map(str, row)) + '\n')
 
             f.write("\n")
             f.write(f"This is the balance left on your account {user_data['account_balance']}\n")
@@ -225,7 +225,7 @@ def run():
                 budgets = response['Item']['budgets']
                 for category, amount in budgets.items():
                     # Write the category and amount to the file
-                    file.write(f"{category}: {amount}\n")
+                    f.write(f"{category}: {amount}\n")
                 
         st.write("Any question? Ask our chatbot!")
         st.button("Lets Go!",on_click=tools.change_page('chatbot'))
