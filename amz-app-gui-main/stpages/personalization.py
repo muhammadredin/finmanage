@@ -159,7 +159,7 @@ def run():
         # Fetch the item from the database
         response = table.get_item(Key={'username': user_data['username']})
 
-        if st.button("Add Budgetings"):
+        if st.button("Add Budgeting"):
             # Check if the item exists and has the 'budgets' attribute
             if 'Item' in response and 'budgets' in response['Item']:
                 # Update the 'budgets' dictionary with new attributes
@@ -205,6 +205,7 @@ def run():
             
             f.write("")
             f.write("monthly incomes")
+            conn = finance_db.connect_db()
             sql = f"SELECT * FROM incomes WHERE username='{user_data['username']}'"
             record = finance_db.read_record(conn, sql)            
             for row in record:
