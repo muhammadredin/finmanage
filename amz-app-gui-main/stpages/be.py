@@ -73,7 +73,40 @@ bedrock_runtime = boto3.client(
     region_name="us-east-1",
 )
 
-sentences = split_text_into_list('output.txt')
+sentences = [
+    "This is the data about user account balances, monthly income and outcomes",
+    "and monthly allocation budgeting for user.",
+    
+    "the balance left for user is 8000000",
+    
+    "this is the monthly income allocation budgeting amount left u can use",
+    "Foods Rp 1,199,935",
+    "House Bill Rp 2,699,852",
+    "Water & Electricity Rp 600,011",
+    "Entertainment Rp 900,050",
+    "Savings Rp 200,056",
+    "Insurance Rp 100,046",
+    "Transport Rp 400,072",
+    "Education Rp 209,987",
+    "Emergency Rp 139,997",
+    "Investment Rp 500,000",
+    "Leftovers Rp 1,049,994",
+    
+    "this is the monthly income history",
+    "date, amount, category, note",
+    "2024/04/26, 500000, Payday, main job",
+    "2024/04/26, 200000, Payday, side job",
+    "2024/04/26, 100000, Gift, family",
+    
+    "this is the monthly outcome history",
+    "date, amount, category, note",
+    "2024/04/26, 20000, Foods, main job",
+    "2024/04/26, 50000, Entertainment, movie watch",
+    "2024/04/26, 100000, Transport, car fuel",
+    
+    "if user ask about monthly income allocation budgeting left, subtract the monthly budgeting with monthly outcome as the right category",    
+    "if user ask about monthly income allocation budgeting left, subtract the monthly budgeting with monthly outcome as the right category"
+]
 
 def claude_prompt_format(prompt: str) -> str:
     # Add headers to start and end of prompt
