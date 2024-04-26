@@ -181,7 +181,7 @@ def run():
                 table.put_item(Item=response['Item'])
                 
             with open('output.txt', 'w') as f:
-                f.write(f"This is the monthly income allocation u can preserve\n")
+                f.write(f"This is the monthly income allocation that has been setted for budgeting purpose\n")
                 f.write(f"{foods[0]} for foods\n")
                 f.write(f"{house[0]} for house bill\n")
                 f.write(f"{we[0]} for water & electricity\n")
@@ -204,7 +204,7 @@ def run():
                 f.write("This is your monthly income and outcomes\n")
                 
                 f.write("\n")
-                f.write("monthly incomes")
+                f.write("monthly incomes\n")
                 conn = finance_db.connect_db()
                 sql = f"SELECT * FROM incomes WHERE username='{user_data['username']}'"
                 record = finance_db.read_record(conn, sql)            
@@ -212,7 +212,7 @@ def run():
                     file.write(','.join(map(str, row)) + '\n')
     
                 f.write("")
-                f.write("monthly outcomes")
+                f.write("monthly outcomes\n")
                 sql = f"SELECT * FROM spending WHERE username='{user_data['username']}'"
                 record = finance_db.read_record(conn, sql)            
                 for row in record:
