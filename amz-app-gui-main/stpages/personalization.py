@@ -162,17 +162,17 @@ def run():
         if 'Item' in response and 'budgets' in response['Item']:
             # Update the 'budgets' dictionary with new attributes
             budgets = response['Item']['budgets']
-            budgets['foods'] = Decimal(foods[0])
-            budgets['house'] = Decimal(house[0])
-            budgets['bills'] = Decimal(we[0])
-            budgets['entertainment'] = Decimal(ent[0])
-            budgets['savings'] = Decimal(sav[0])
-            budgets['insurance'] = Decimal(ins[0])
-            budgets['transportation'] = Decimal(trans[0])
-            budgets['education'] = Decimal(edu[0])
-            budgets['emergency'] = Decimal(emg[0])
-            budgets['invest'] = Decimal(inv[0])
-            budgets['leftovers'] = Decimal(leftovers)
+            budgets['foods'] = Decimal(str(foods[0]))
+            budgets['house'] = Decimal(str(house[0]))
+            budgets['bills'] = Decimal(str(we[0]))
+            budgets['entertainment'] = Decimal(str(ent[0]))
+            budgets['savings'] = Decimal(str(sav[0]))
+            budgets['insurance'] = Decimal(str(ins[0]))
+            budgets['transportation'] = Decimal(str(trans[0]))
+            budgets['education'] = Decimal(str(edu[0]))
+            budgets['emergency'] = Decimal(str(emg[0]))
+            budgets['invest'] = Decimal(str(inv[0]))
+            budgets['leftovers'] = Decimal(str(leftovers))
         
             # Update the item with the modified 'budgets' dictionary
             response['Item']['budgets'] = budgets
