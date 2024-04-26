@@ -22,8 +22,6 @@ if __name__ == "__main__":
     elif page == 'personalization':
         personalization.run()
     elif page == 'chatbot':
-        expense_page.run()
-    elif page == 'chatbot':
         chatbot.run()
     elif page == 'spend_track':
         spend_track.run()
@@ -39,7 +37,7 @@ if __name__ == "__main__":
         st.sidebar.button("Login Form", on_click=tools.change_page('login'))
         st.sidebar.button("Sign Up Form", on_click=tools.change_page('signup'))
         st.sidebar.button("Personalization", on_click=tools.change_page('personalization'))
-        st.sidebar.button("Expense Allocation", on_click=tools.change_page("chatbot"))
+        st.sidebar.button("Chatbot", on_click=tools.change_page("chatbot"))
         st.sidebar.button("Spend Track", on_click=tools.change_page("spend_track"))
         st.sidebar.button("Add Income/Outcome", on_click=tools.change_page("input_spend"))
     remove_footer.run()
